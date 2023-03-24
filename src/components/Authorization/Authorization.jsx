@@ -3,7 +3,7 @@ import { Formik, Field, Form } from 'formik';
 export const Authorization = () => {
   return (
     <div>
-      <h2>Sign Up</h2>
+      <h2>LogIn</h2>
       <Formik
         initialValues={{
           email: '',

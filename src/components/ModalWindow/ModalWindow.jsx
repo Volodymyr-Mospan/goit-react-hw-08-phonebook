@@ -1,6 +1,7 @@
 import Modal from 'react-modal';
 import { Authorization } from 'components/Authorization/Authorization';
 import { Registration } from 'components/Registration/Registration';
+import { useState } from 'react';
 
 const customStyles = {
   content: {
@@ -15,7 +16,13 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-export const LogInModal = ({ modalIsOpen, closeModal }) => {
+export const ModalWindow = ({ modalIsOpen, closeModal }) => {
+  const [isViewAuth, setIsViewAuth] = useState(true);
+
+  const handleClick = () => {
+    setIsViewAuth(prevIsViewAuth => !prevIsViewAuth);
+  };
+
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -23,8 +30,14 @@ export const LogInModal = ({ modalIsOpen, closeModal }) => {
       style={customStyles}
     >
       <h2>Hello</h2>
-      <Authorization />
-      <Registration />
+      <button onClick={handleClick} disabled={isViewAuth}>
+        Authorization
+      </button>
+      <button onClick={handleClick} disabled={!isViewAuth}>
+        Registration
+      </button>
+
+      {isViewAuth ? <Authorization /> : <Registration />}
     </Modal>
   );
 };
