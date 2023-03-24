@@ -9,8 +9,10 @@ export const StyledApp = styled.div`
   );
   background-size: cover;
 
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  justify-content: start;
+  align-items: flex-start;
   min-height: 100vh;
   text-shadow: 0 0 4px white;
 `;

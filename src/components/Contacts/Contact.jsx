@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { ContactBtn } from 'components/Contacts/';
-import { useDeleteContactMutation } from 'redux/contactSlice';
+import { useDeleteContactMutation } from 'redux/contactsSlice';
 
 export const Contact = ({ contact }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();

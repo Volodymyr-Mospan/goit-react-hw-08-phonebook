@@ -11,7 +11,7 @@ import {
 import {
   useAddContactsMutation,
   useGetContactsQuery,
-} from 'redux/contactSlice';
+} from 'redux/contactsSlice';
 
 export const ContactForm = () => {
   const { data } = useGetContactsQuery();
