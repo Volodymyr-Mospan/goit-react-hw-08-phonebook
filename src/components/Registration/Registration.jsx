@@ -17,7 +17,7 @@ export const Registration = () => {
       >
         <Form>
           <label>
-            First Name
+            Full Name
             <Field name="fullName" placeholder="Jane Doe" />
           </label>
 
