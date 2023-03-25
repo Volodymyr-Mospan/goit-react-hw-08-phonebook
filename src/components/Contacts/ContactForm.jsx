@@ -11,12 +11,13 @@ import {
 import {
   useAddContactsMutation,
   useGetContactsQuery,
-} from 'redux/contactsSlice';
+} from 'redux/contacts/slice';
 
 export const ContactForm = () => {
   const { data } = useGetContactsQuery();
+  const [addContacts, { isLoading }] = useAddContactsMutation();
 
-  const initialValues = { name: '', phone: '' };
+  const initialValues = { name: '', number: '' };
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -25,7 +26,7 @@ export const ContactForm = () => {
         "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
       )
       .required('It is required'),
-    phone: yup
+    number: yup
       .number()
       .required('It is required')
       .positive()
@@ -40,8 +41,6 @@ export const ContactForm = () => {
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
   };
-
-  const [addContacts, { isLoading }] = useAddContactsMutation();
 
   const handleSubmit = (values, { resetForm }) => {
     const isContactsInclude = checkingContacts(values.name);
@@ -69,8 +68,8 @@ export const ContactForm = () => {
         </Label>
         <Label>
           Number
-          <Input type="tel" name="phone" />
-          <ErrorMessage name="phone" component={ErrorMessageStyled} />
+          <Input type="tel" name="number" />
+          <ErrorMessage name="number" component={ErrorMessageStyled} />
         </Label>
 
         {

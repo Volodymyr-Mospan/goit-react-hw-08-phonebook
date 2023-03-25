@@ -8,7 +8,6 @@ export const Header = ({ onClick }) => {
 
   function openModal() {
     setIsOpen(true);
-    console.log('is Click');
   }
 
   function closeModal() {

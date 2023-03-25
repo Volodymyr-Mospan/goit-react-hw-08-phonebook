@@ -1,24 +1,33 @@
 import { Formik, Field, Form } from 'formik';
+// import { useRegisterMutation } from 'redux/auth/slice';
+import { RegFormStyled } from './Registration.styled';
 
 export const Registration = () => {
+  // const [register] = useRegisterMutation();
+
+  const handleSubmit = credentials => {
+    console.log(credentials);
+    // register(credentials);
+  };
   return (
-    <div>
+    <RegFormStyled>
       <h2>Sign Up</h2>
       <Formik
         initialValues={{
-          fullName: '',
+          name: '',
           email: '',
           password: '',
         }}
-        onSubmit={async values => {
-          await new Promise(r => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
+        onSubmit={handleSubmit}
+        // async values => {
+        //   await new Promise(r => setTimeout(r, 500));
+        //   alert(JSON.stringify(values, null, 2));
+        // }
       >
         <Form>
           <label>
             Full Name
-            <Field name="fullName" placeholder="Jane Doe" />
+            <Field name="name" placeholder="Jane Doe" />
           </label>
 
           <label>
@@ -37,6 +46,6 @@ export const Registration = () => {
           <button type="submit">Submit</button>
         </Form>
       </Formik>
-    </div>
+    </RegFormStyled>
   );
 };

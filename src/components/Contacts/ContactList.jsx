@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectFilter } from 'redux/selectors';
-import { useGetContactsQuery } from 'redux/contactsSlice';
+import { selectFilter } from 'redux/filter/selectors';
+import { useGetContactsQuery } from 'redux/contacts/slice';
 import { Contact } from 'components/Contacts/';
 import { ContactListStyled, ContactStyled } from 'components/Contacts/';
 

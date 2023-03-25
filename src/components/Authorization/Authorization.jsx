@@ -1,18 +1,24 @@
 import { Formik, Field, Form } from 'formik';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/options';
+
+import { AuthFormStyled } from './Authorization.styled';
 
 export const Authorization = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = credentials => {
+    dispatch(logIn(credentials));
+  };
   return (
-    <div>
+    <AuthFormStyled>
       <h2>LogIn</h2>
       <Formik
         initialValues={{
           email: '',
           password: '',
         }}
-        onSubmit={async values => {
-          await new Promise(r => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}
+        onSubmit={handleSubmit}
       >
         <Form>
           <label>
@@ -31,6 +37,6 @@ export const Authorization = () => {
           <button type="submit">Submit</button>
         </Form>
       </Formik>
-    </div>
+    </AuthFormStyled>
   );
 };

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { ContactBtn } from 'components/Contacts/';
-import { useDeleteContactMutation } from 'redux/contactsSlice';
+import { useDeleteContactMutation } from 'redux/contacts/slice';
 
 export const Contact = ({ contact }) => {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
@@ -11,7 +11,7 @@ export const Contact = ({ contact }) => {
 
   return (
     <>
-      {`${contact.name}: ${contact.phone}`}
+      {`${contact.name}: ${contact.number}`}
       <ContactBtn type="button" onClick={handleDelete}>
         {isLoading ? 'Deleting...' : 'Delete'}
       </ContactBtn>
@@ -23,6 +23,6 @@ Contact.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
   }).isRequired,
 };
