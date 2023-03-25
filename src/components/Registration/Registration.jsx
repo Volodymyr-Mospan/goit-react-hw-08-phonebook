@@ -1,13 +1,26 @@
 import { Formik, Field, Form } from 'formik';
-// import { useRegisterMutation } from 'redux/auth/slice';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { register } from 'redux/auth/options';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+
 import { RegFormStyled } from './Registration.styled';
 
-export const Registration = () => {
-  // const [register] = useRegisterMutation();
+export const Registration = ({ closeModal }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/contacts', { replace: true });
+      closeModal();
+    }
+  }, [closeModal, isLoggedIn, navigate]);
 
   const handleSubmit = credentials => {
-    console.log(credentials);
-    // register(credentials);
+    dispatch(register(credentials));
   };
   return (
     <RegFormStyled>
@@ -19,10 +32,6 @@ export const Registration = () => {
           password: '',
         }}
         onSubmit={handleSubmit}
-        // async values => {
-        //   await new Promise(r => setTimeout(r, 500));
-        //   alert(JSON.stringify(values, null, 2));
-        // }
       >
         <Form>
           <label>

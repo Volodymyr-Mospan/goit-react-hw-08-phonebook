@@ -1,11 +1,22 @@
 import { Formik, Field, Form } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { logIn } from 'redux/auth/options';
-
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import { AuthFormStyled } from './Authorization.styled';
 
-export const Authorization = () => {
+export const Authorization = ({ closeModal }) => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/contacts', { replace: false });
+      closeModal();
+    }
+  }, [closeModal, isLoggedIn, navigate]);
 
   const handleSubmit = credentials => {
     dispatch(logIn(credentials));

@@ -37,7 +37,11 @@ export const ModalWindow = ({ modalIsOpen, closeModal }) => {
         Registration
       </button>
 
-      {isViewAuth ? <Authorization /> : <Registration />}
+      {isViewAuth ? (
+        <Authorization closeModal={closeModal} />
+      ) : (
+        <Registration closeModal={closeModal} />
+      )}
     </Modal>
   );
 };
