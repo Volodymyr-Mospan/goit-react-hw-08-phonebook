@@ -2,7 +2,7 @@ import { ContactForm, ContactList, Filter } from 'components/Contacts/';
 import { Outlet } from 'react-router-dom';
 import { useGetContactsQuery } from 'redux/contacts/slice';
 
-export const ContactsPage = () => {
+export const Contacts = () => {
   const { data, error, isFetching } = useGetContactsQuery();
 
   return (

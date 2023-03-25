@@ -1,30 +1,17 @@
 import { Formik, Field, Form } from 'formik';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/options';
-import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { RegFormStyled } from './RegisterForm.styled';
 
-import { RegFormStyled } from './Registration.styled';
-
-export const Registration = ({ closeModal }) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+export const RegisterForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/contacts', { replace: true });
-      closeModal();
-    }
-  }, [closeModal, isLoggedIn, navigate]);
 
   const handleSubmit = credentials => {
     dispatch(register(credentials));
   };
+
   return (
     <RegFormStyled>
-      <h2>Sign Up</h2>
       <Formik
         initialValues={{
           name: '',
