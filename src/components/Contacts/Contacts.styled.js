@@ -39,7 +39,10 @@ export const FormBtn = styled.button`
   width: 150px;
   margin-top: 20px;
   padding: 10px 25px;
-  /* border-radius: 10px; */
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 10px;
   cursor: pointer;
 `;
 
@@ -68,7 +71,8 @@ export const ContactStyled = styled.li`
   display: flex;
   align-items: center;
   padding: 5px;
-  border: 1px solid black;
+  border: none;
+  border-bottom: 1px solid black;
   border-radius: 20px;
   background-image: linear-gradient(
     to right,
@@ -89,6 +93,9 @@ export const ContactStyled = styled.li`
 export const ContactBtn = styled.button`
   margin-left: auto;
   padding: 5px 25px;
-  border-radius: 0 13px 13px 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 10px;
   cursor: pointer;
 `;
