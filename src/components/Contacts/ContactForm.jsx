@@ -8,14 +8,13 @@ import {
   ErrorMessageStyled,
   FormBtn,
 } from 'components/Contacts/';
-import {
-  useAddContactsMutation,
-  useGetContactsQuery,
-} from 'redux/contacts/slice';
+import { useDispatch } from 'react-redux';
+import { useContacts } from 'hooks';
+import { addContact } from 'redux/contacts/operations';
 
 export const ContactForm = () => {
-  const { data } = useGetContactsQuery();
-  const [addContacts, { isLoading }] = useAddContactsMutation();
+  const dispach = useDispatch();
+  const { allContacts, isLoadingContacts } = useContacts();
 
   const initialValues = { name: '', number: '' };
   const schema = yup.object().shape({
@@ -37,7 +36,7 @@ export const ContactForm = () => {
   });
 
   const checkingContacts = name => {
-    return data.some(
+    return allContacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
   };
@@ -50,7 +49,8 @@ export const ContactForm = () => {
       return;
     }
 
-    addContacts(values);
+    dispach(addContact(values));
+
     resetForm();
   };
 
@@ -73,8 +73,8 @@ export const ContactForm = () => {
         </Label>
 
         {
-          <FormBtn type="submit" disabled={isLoading}>
-            {isLoading ? 'adding...' : 'Add contact'}
+          <FormBtn type="submit" disabled={isLoadingContacts}>
+            {isLoadingContacts ? 'adding...' : 'Add contact'}
           </FormBtn>
         }
       </FormStyled>

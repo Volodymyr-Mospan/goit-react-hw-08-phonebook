@@ -3,7 +3,7 @@ import { Contacts } from 'pages/ContactsPage';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from 'pages/HomePage';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from 'redux/auth/options';
+import { refreshUser } from 'redux/auth/operations';
 import { PrivateRoute } from './PrivateRoute';
 import { useAuth } from 'hooks/useAuth';
 import { Layout } from './Layout';
@@ -22,15 +22,6 @@ export const App = () => {
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
-    // <Routes>
-    //   <Route path="/" element={<Header />}>
-    //     <Route index element={<Home />} />
-    //     <Route
-    //       path="/contacts"
-    //       element={<PrivateRoute redirectTo="/" component={<ContactsPage />} />}
-    //     ></Route>
-    //   </Route>
-    // </Routes>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />

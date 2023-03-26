@@ -10,7 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { contactsApi } from './contacts/slice';
+import { contactsReducer } from './contacts/slice';
 import { filterSlice } from './filter/slice';
 import { authReducer } from './auth/slice';
 
@@ -26,18 +26,13 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  contactsApi.middleware,
-  // authApi.middleware,
 ];
 
 export const store = configureStore({
   reducer: {
-    // contacts: contactsSlice.reducer,
+    contacts: contactsReducer,
     filter: filterSlice.reducer,
     auth: persistReducer(authPersistConfig, authReducer),
-    [contactsApi.reducerPath]: contactsApi.reducer,
-    // [authApi.reducerPath]: authApi.reducer,
-    // api: persistReducer(authPersistConfig, authApi.reducer),
   },
   middleware,
 });

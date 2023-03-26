@@ -1,19 +1,22 @@
 import PropTypes from 'prop-types';
 import { ContactBtn } from 'components/Contacts/';
-import { useDeleteContactMutation } from 'redux/contacts/slice';
+import { useContacts } from 'hooks';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/contacts/operations';
 
 export const Contact = ({ contact }) => {
-  const [deleteContact, { isLoading }] = useDeleteContactMutation();
+  const { isLoadingContacts } = useContacts();
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
-    deleteContact(contact.id);
+    dispatch(deleteContact(contact.id));
   };
 
   return (
     <>
       {`${contact.name}: ${contact.number}`}
       <ContactBtn type="button" onClick={handleDelete}>
-        {isLoading ? 'Deleting...' : 'Delete'}
+        {isLoadingContacts ? 'Deleting...' : 'Delete'}
       </ContactBtn>
     </>
   );

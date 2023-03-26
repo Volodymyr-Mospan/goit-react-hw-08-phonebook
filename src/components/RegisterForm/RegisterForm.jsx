@@ -1,6 +1,6 @@
 import { Formik, Field, Form } from 'formik';
 import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth/options';
+import { register } from 'redux/auth/operations';
 import { RegFormStyled } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
