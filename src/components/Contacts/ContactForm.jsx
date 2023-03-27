@@ -1,6 +1,5 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
-import { IMaskInput } from 'react-imask';
 import * as yup from 'yup';
 import {
   Input,
@@ -27,13 +26,7 @@ export const ContactForm = () => {
         "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
       )
       .required('It is required'),
-    number: yup
-      .string()
-      .matches(
-        /^[\d+-]+$/,
-        'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
-      )
-      .required('It is required'),
+    number: yup.string(),
   });
 
   const checkingContacts = name => {
@@ -61,7 +54,7 @@ export const ContactForm = () => {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      <FormStyled>
+      <FormStyled autoComplete="off">
         <Label>
           Name
           <Input type="text" name="name" />
