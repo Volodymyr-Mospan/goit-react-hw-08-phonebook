@@ -10,9 +10,6 @@ export const selectContactsError = state => state.contacts.error;
 export const selectFilteredContacts = createSelector(
   [selectAllContacts, selectFilter],
   (contacts, filter) => {
-    console.log(contacts);
-    console.log(filter);
-
     const normalizedFilter = filter.toLowerCase();
     return contacts
       .filter(

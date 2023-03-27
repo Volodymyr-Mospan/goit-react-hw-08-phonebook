@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
+import { IMaskInput } from 'react-imask';
 
 export const FormStyled = styled(Form)`
   display: flex;
@@ -18,6 +19,13 @@ export const Label = styled.label`
 `;
 
 export const Input = styled(Field)`
+  padding: 5px 25px;
+  border-radius: 10px;
+
+  font-size: 20px;
+`;
+
+export const IMaskInputStyled = styled(IMaskInput)`
   padding: 5px 25px;
   border-radius: 10px;
 

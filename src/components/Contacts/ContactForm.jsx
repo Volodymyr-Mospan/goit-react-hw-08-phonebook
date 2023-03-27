@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, ErrorMessage } from 'formik';
+import { IMaskInput } from 'react-imask';
 import * as yup from 'yup';
 import {
   Input,
@@ -7,6 +8,7 @@ import {
   Label,
   ErrorMessageStyled,
   FormBtn,
+  IMaskInputStyled,
 } from 'components/Contacts/';
 import { useDispatch } from 'react-redux';
 import { useContacts } from 'hooks';
@@ -26,13 +28,12 @@ export const ContactForm = () => {
       )
       .required('It is required'),
     number: yup
-      .number()
-      .required('It is required')
-      .positive()
-      .integer()
-      .typeError(
+      .string()
+      .matches(
+        /^[\d+-]+$/,
         'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
-      ),
+      )
+      .required('It is required'),
   });
 
   const checkingContacts = name => {
@@ -68,7 +69,11 @@ export const ContactForm = () => {
         </Label>
         <Label>
           Number
-          <Input type="tel" name="number" />
+          <Input type="text" name="number">
+            {({ field }) => (
+              <IMaskInputStyled {...field} mask={'{+}00 (000) 000-00-00'} />
+            )}
+          </Input>
           <ErrorMessage name="number" component={ErrorMessageStyled} />
         </Label>
 
